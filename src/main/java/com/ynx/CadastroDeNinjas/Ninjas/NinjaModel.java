@@ -1,5 +1,6 @@
-package com.ynx.CadastroDeNinjas;
+package com.ynx.CadastroDeNinjas.Ninjas;
 
+import com.ynx.CadastroDeNinjas.Missoes.MissoesModel;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,13 +9,23 @@ public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id; //PK
 
-    private long id;
     private String nome;
+
     private String email;
+
     private int idade;
 
+    // @ManyToOne - Um ninja tem uma unica missao
+    @ManyToOne
+    @JoinColumn(name = "missoes_id") //FK
+    private MissoesModel missoes;
+
+
+
     public NinjaModel(){
+
     }
 
     public NinjaModel(String nome, String email, int idade) {
